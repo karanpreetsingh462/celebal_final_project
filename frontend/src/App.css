@@ -1,0 +1,250 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+/* Layout */
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+.page-container {
+    min-height: 100vh;
+    background-color: #fbeaea;
+    padding: 40px 20px;
+}
+
+.page-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    text-align: center;
+    color: #4b5abf;
+    margin-bottom: 40px;
+}
+
+.search-box-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+
+.search-input {
+    width: 100%;
+    max-width: 600px;
+    padding: 12px;
+    border: 1px solid #d6d6f5;
+    border-radius: 16px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    transition: all 0.3s;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: #c0c0f5;
+    box-shadow: 0 0 0 3px #e0e0ff;
+}
+
+.product-grid {
+    display: grid;
+    gap: 32px;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+}
+
+.product-card {
+    background: white;
+    border: 1px solid #e6e6fa;
+    border-radius: 16px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: box-shadow 0.3s;
+}
+
+.product-card:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.product-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.product-desc {
+    margin-top: 8px;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.product-meta {
+    font-size: 0.85rem;
+    color: #777;
+    margin-top: 4px;
+}
+
+.product-manufacturer {
+    font-size: 0.75rem;
+    color: #5e6cd1;
+    font-style: italic;
+    margin-top: 8px;
+}
+
+.product-link {
+    text-align: right;
+    margin-top: 16px;
+}
+
+.product-link a {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #4b5abf;
+    text-decoration: none;
+}
+
+.product-link a:hover {
+    text-decoration: underline;
+}
+
+/* Empty state */
+.empty-message {
+    text-align: center;
+    margin-top: 64px;
+    font-size: 1.125rem;
+    color: #aaa;
+}
+
+/* Detail & Form Page */
+.detail-container, .form-container {
+    max-width: 768px;
+    margin: 40px auto;
+    background: white;
+    padding: 24px;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.detail-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #1e3a8a;
+    margin-bottom: 12px;
+}
+
+.detail-text {
+    margin-bottom: 16px;
+    color: #333;
+}
+
+.button-group {
+    margin-top: 24px;
+    display: flex;
+    gap: 16px;
+}
+
+.btn {
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-weight: 500;
+    color: white;
+    cursor: pointer;
+    border: none;
+}
+
+.btn-blue {
+    background-color: #2563eb;
+}
+
+.btn-red {
+    background-color: #ef4444;
+}
+
+.form-group {
+    margin-bottom: 16px;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 0.9rem;
+}
+
+.form-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    transition: all 0.3s;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: #60a5fa;
+    box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.3);
+}
+
+/* Navbar */
+.navbar {
+    background-color: white;
+    padding: 16px 24px;
+    border-bottom: 1px solid #e5e7eb;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+}
+
+.navbar-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1280px;
+    margin: auto;
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+}
+
+.navbar-logo {
+    height: 32px;
+}
+
+.navbar-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #1d4ed8;
+}
+
+.navbar-button {
+    background-color: #2563eb;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    text-decoration: none;
+}
+
+.navbar-button:hover {
+    background-color: #165eff;
+}
+
+/* Keep existing form-input look, but fine-tune for select */
+.manufacturer-select {
+    appearance: none;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    padding: 0.6rem 0.75rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.2s ease-in-out;
+    width: 100%;
+    cursor: pointer;
+    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20fill%3D%22%23222222%22%20height%3D%2218%22%20viewBox%3D%220%200%2024%2024%22%20width%3D%2218%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cpath%20d%3D%22M7%2010l5%205%205-5z%22/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 1rem;
+}
+
+.manufacturer-select:focus {
+    outline: none;
+    border-color: #3182ce;
+    box-shadow: 0 0 0 3px rgba(49, 130, 206, 0.2);
+}
