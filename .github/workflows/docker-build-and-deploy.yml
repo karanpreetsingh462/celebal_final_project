@@ -39,18 +39,3 @@ jobs:
           file: ./frontend/Dockerfile
           push: true
           tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME_FRONTEND }}:latest
-
-  deploy-to-azure:
-    needs: build-and-push
-    runs-on: ubuntu-latest
-    steps:
-      - name: Azure Login
-        uses: azure/login@v2
-        with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
-
-      - name: Deploy to Azure Web App
-        uses: azure/webapps-deploy@v3
-        with:
-          app-name: pharma-frontend-app
-          images: ghcr.io/${{ env.IMAGE_NAME_BACKEND }}:latest
