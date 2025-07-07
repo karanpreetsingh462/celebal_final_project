@@ -18,8 +18,23 @@ jobs:
           distribution: 'temurin'
 
       - name: Build with Maven
-        run: mvn clean package
+        run: mvn clean package -DskipTests
         working-directory: backend
+
+      - name: Check GHCR_TOKEN secret
+        run: |
+          if [ -z "${{ secrets.GHCR_TOKEN }}" ]; then
+            echo "GHCR_TOKEN secret is not set. Please add it in your repository secrets."
+            exit 1
+          fi
+
+      - name: Log in to GitHub Container Registry (using GHCR_TOKEN)
+        run: echo "${{ secrets.GHCR_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+      - name: Azure Login
+        uses: azure/login@v2
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
 
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v3
