@@ -17,7 +17,7 @@ export default function AddOrEditProduct({ isEdit = false }) {
 
     // Fetch manufacturers on mount
     useEffect(() => {
-        fetch("http://localhost:8080/api/manufacturers")
+        fetch(`${import.meta.env.VITE_API_BASE_URL}/api/manufacturers`)
             .then(res => res.json())
             .then(data => setManufacturers(data));
     }, []);
@@ -25,7 +25,7 @@ export default function AddOrEditProduct({ isEdit = false }) {
     // Fetch product if in edit mode
     useEffect(() => {
         if (isEdit && id) {
-            fetch(`http://localhost:8080/api/products/${id}`)
+            fetch(`${import.meta.env.VITE_API_BASE_URL}/api/products/${id}`)
                 .then(res => res.json())
                 .then(data => setProduct(data));
         }
@@ -46,7 +46,7 @@ export default function AddOrEditProduct({ isEdit = false }) {
         const method = isEdit ? "PUT" : "POST";
         const endpoint = isEdit ? `/api/products/${id}` : "/api/products";
 
-        await fetch(`http://localhost:8080${endpoint}`, {
+        await fetch(`${import.meta.env.VITE_API_BASE_URL}${endpoint}`, {
             method,
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(product),

@@ -7,13 +7,13 @@ export default function ProductDetails() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        fetch(`http://localhost:8080/api/products/${id}`)
+        fetch(`${import.meta.env.VITE_API_BASE_URL}/api/products/${id}`)
             .then((res) => res.json())
             .then((data) => setProduct(data));
     }, [id]);
 
     const handleDelete = async () => {
-        await fetch(`http://localhost:8080/api/products/${id}`, { method: "DELETE" });
+        await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/products/${id}`, { method: "DELETE" });
         navigate("/");
     };
 
