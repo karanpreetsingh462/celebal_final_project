@@ -31,7 +31,7 @@ CREATE TABLE product (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     description VARCHAR(1000),
-    `usage` VARCHAR(1000),
+    instructions VARCHAR(1000),
     safety_precautions VARCHAR(1000),
     manufacturer_id BIGINT,
     CONSTRAINT fk_manufacturer
