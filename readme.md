@@ -1,158 +1,84 @@
-# 🌿 Celebal Pharma - Full Stack Application
+# Pharma Product Management System
 
-## 🌐 Live Demo  
-🔗 **Deployed Project**: [Celebal Pharma on Azure](https://black-grass-036d21300.1.azurestaticapps.net)
-
----
-
-## 📽️ Deployment Videos  
-- ▶️ [Local Deployment Demo](#) *(replace with your actual video link)*  
-- ☁️ [Azure Deployment Demo](#) *(replace with your actual video link)*
+This project is a backend service for managing pharmaceutical products and their manufacturers. It uses *Spring Boot* for the backend and *MySQL* as the relational database.
 
 ---
 
-## 📋 Overview  
-Celebal Pharma is a full-stack web application for managing pharmaceutical products, built with a **Spring Boot backend**, **React frontend**, and **Azure SQL Database**.  
-It is fully containerized and supports **CI/CD** via **GitHub Actions**, with production deployment on **Microsoft Azure**.
+## 🛠 Database Setup
+
+### 1. Create the Database
+
+Log into your MySQL server and run the following SQL command to create the database:
+
+sql
+CREATE DATABASE pharma_db;
+
+
+### 2. Create the Tables
+
+Once inside the pharma_db database, execute the following SQL statements to initialize the schema:
+
+sql
+USE pharma_db;
+
+CREATE TABLE manufacturer (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    location VARCHAR(255)
+);
+
+CREATE TABLE product (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    description VARCHAR(1000),
+    instructions VARCHAR(1000),
+    safety_precautions VARCHAR(1000),
+    manufacturer_id BIGINT,
+    CONSTRAINT fk_manufacturer
+        FOREIGN KEY (manufacturer_id)
+        REFERENCES manufacturer(id)
+        ON DELETE SET NULL
+);
+
 
 ---
 
-## 🚀 Features  
-- 🧪 Product listing, add/edit/delete  
-- 🏭 Manufacturer management  
-- 🔐 Secure backend with **Java 17 & Spring Boot**  
-- 🎨 Modern frontend using **React (Vite) & Tailwind CSS**  
-- ☁️ Azure SQL Database integration  
-- 🔄 CI/CD with GitHub Actions  
-- 🚀 Deployed to **Azure App Service** and **Azure Static Web Apps**
+## ⚙ Spring Boot Configuration
+
+### 3. Update Database Credentials
+
+Open the application.properties file in your Spring Boot project (typically located at src/main/resources/application.properties) and update your database credentials accordingly:
+
+properties
+spring.datasource.url=jdbc:mysql://localhost:3306/pharma_db
+spring.datasource.username=YOUR_USERNAME
+spring.datasource.password=YOUR_PASSWORD
+
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL8Dialect
+
+
+> 💡 *Tip:* Replace YOUR_USERNAME and YOUR_PASSWORD with your actual MySQL credentials.
 
 ---
 
-## 🧰 Prerequisites  
-- Java 17+  
-- Node.js 18+  
-- Maven 3.8+  
-- Docker (for local builds)  
-- Azure account (for deployment)
+## ✅ Ready to Use
+
+Once you've set up the database and updated your credentials, start your Spring Boot application. It should connect to the database and be ready to perform CRUD operations on product and manufacturer tables.
 
 ---
 
-## 💻 Local Development
+## 📁 Project Structure
 
-### 1️⃣ Clone the Repository
-```bash
-git clone <your-repo-url>
-cd celebal-pharma
-```
 
-### 2️⃣ Backend Setup
+├── src
+│   ├── main
+│   │   ├── java/com/yourapp/...
+│   │   └── resources/
+│   │       └── application.properties
+├── pom.xml
+└── README.md
 
-* Configure local DB (MySQL or SQL Server)
-* Update:
-  `backend/src/main/resources/application-local.properties`
-* Run backend:
-
-```bash
-cd backend
-./mvnw spring-boot:run -Dspring-boot.run.profiles=local
-```
-
-### 3️⃣ Frontend Setup
-
-* Create `.env` in `frontend/`:
-
-```env
-VITE_API_BASE_URL=http://localhost:8080
-```
-
-* Start frontend:
-
-```bash
-cd frontend
-npm install
-npm run dev
-```
 
 ---
-
-## ☁️ Production Deployment (Azure)
-
-### 🔧 Azure Resources
-
-* **Backend:** Azure App Service (Java 17 or Docker)
-* **Frontend:** Azure Static Web Apps
-* **Database:** Azure SQL Database
-
-### 🔑 Environment Variables
-
-**In Azure App Service:**
-
-* `DB_PASSWORD`
-
-**In Azure Static Web Apps (if needed):**
-
-* `VITE_API_BASE_URL=https://<your-backend-app>.azurewebsites.net`
-
-### 🛠️ CI/CD with GitHub Actions
-
-* Configs: `.github/workflows/`
-* Required GitHub Secrets:
-
-  * `AZURE_CREDENTIALS`
-  * `AZURE_WEBAPP_PUBLISH_PROFILE`
-  * `GHCR_TOKEN` (for Docker)
-  * `DB_PASSWORD`
-
-### 🚀 Deployment Workflow
-
-* Push to `main` triggers build & deploy:
-
-  * **Frontend:** Azure Static Web Apps
-  * **Backend:** Azure App Service
-
----
-
-## 🗃️ Database Setup
-
-* Use **Azure SQL Database** in production
-* Access with Azure Query Editor, SSMS, or Azure Data Studio
-
-#### Example Queries
-
-```sql
-SELECT * FROM dbo.product;
-SELECT * FROM dbo.manufacturer;
-```
-
----
-
-## 🛠️ Troubleshooting
-
-| Issue                            | Solution                                     |
-| -------------------------------- | -------------------------------------------- |
-| **Frontend: No products found**  | Verify `VITE_API_BASE_URL` and CORS          |
-| **Backend: DB connection fails** | Check credentials, firewall settings         |
-| **CI/CD pipeline fails**         | Validate GitHub Secrets, check logs          |
-| **Product Add/Edit issues**      | Confirm correct API URLs & redeploy frontend |
-
----
-
-## 📊 Monitoring & Logging
-
-* **Backend Logs:** Azure App Service → Log Stream
-* **Advanced Monitoring:** Enable Azure Application Insights
-
----
-
-## 📚 Useful Resources
-
-* [Azure App Service Docs](https://learn.microsoft.com/en-us/azure/app-service/)
-* [Azure Static Web Apps Docs](https://learn.microsoft.com/en-us/azure/static-web-apps/)
-* [Spring Boot Docs](https://spring.io/projects/spring-boot)
-* [Vite Docs](https://vitejs.dev/)
-
----
-
-## 🤝 Contact
-
-For issues or contributions, feel free to open a GitHub issue or pull request.
