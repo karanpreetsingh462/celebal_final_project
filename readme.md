@@ -1,44 +1,76 @@
-# Pharma Product Management System
+# 🌿 Celebal Pharma - Full Stack Application
 
-This project is a backend service for managing pharmaceutical products and their manufacturers. It uses **Spring Boot** for the backend and **MySQL** as the relational database.
+## 🌐 Live Demo  
+🔗 **Deployed Project**: [Celebal Pharma on Azure](https://black-grass-036d21300.1.azurestaticapps.net)
 
 ---
 
-## 🛠️ Database Setup
+## 📽️ Deployment Videos  
+- ▶️ [Local Deployment Demo](#) *(replace with your actual video link)*  
+- ☁️ [Azure Deployment Demo](#) *(replace with your actual video link)*
 
-### 1. Create the Database
+---
 
-Log into your MySQL server and run the following SQL command to create the database:
+## 📋 Overview  
+Celebal Pharma is a full-stack web application for managing pharmaceutical products, built with a **Spring Boot backend**, **React frontend**, and **Azure SQL Database**.  
+It is fully containerized and supports **CI/CD** via **GitHub Actions**, with production deployment on **Microsoft Azure**.
 
-```sql
-CREATE DATABASE pharma_db;
+---
+
+## 🚀 Features  
+- 🧪 Product listing, add/edit/delete  
+- 🏭 Manufacturer management  
+- 🔐 Secure backend with **Java 17 & Spring Boot**  
+- 🎨 Modern frontend using **React (Vite) & Tailwind CSS**  
+- ☁️ Azure SQL Database integration  
+- 🔄 CI/CD with GitHub Actions  
+- 🚀 Deployed to **Azure App Service** and **Azure Static Web Apps**
+
+---
+
+## 🧰 Prerequisites  
+- Java 17+  
+- Node.js 18+  
+- Maven 3.8+  
+- Docker (for local builds)  
+- Azure account (for deployment)
+
+---
+
+## 💻 Local Development
+
+### 1️⃣ Clone the Repository
+```bash
+git clone <your-repo-url>
+cd celebal-pharma
 ```
 
-### 2. Create the Tables
+### 2️⃣ Backend Setup
 
-Once inside the `pharma_db` database, execute the following SQL statements to initialize the schema:
+* Configure local DB (MySQL or SQL Server)
+* Update:
+  `backend/src/main/resources/application-local.properties`
+* Run backend:
 
-```sql
-USE pharma_db;
+```bash
+cd backend
+./mvnw spring-boot:run -Dspring-boot.run.profiles=local
+```
 
-CREATE TABLE manufacturer (
-    id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
-    location VARCHAR(255)
-);
+### 3️⃣ Frontend Setup
 
-CREATE TABLE product (
-    id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
-    description VARCHAR(1000),
-    instructions VARCHAR(1000),
-    safety_precautions VARCHAR(1000),
-    manufacturer_id BIGINT,
-    CONSTRAINT fk_manufacturer
-        FOREIGN KEY (manufacturer_id)
-        REFERENCES manufacturer(id)
-        ON DELETE SET NULL
-);
+* Create `.env` in `frontend/`:
+
+```env
+VITE_API_BASE_URL=http://localhost:8080
+```
+
+* Start frontend:
+
+```bash
+cd frontend
+npm install
+npm run dev
 ```
 
 ---
@@ -80,28 +112,9 @@ CREATE TABLE product (
 
 ---
 
-## 🗃️ Database Setup
+## ✅ Ready to Use
 
-* Use **Azure SQL Database** in production
-* Access with Azure Query Editor, SSMS, or Azure Data Studio
-
-#### Example Queries
-
-```sql
-SELECT * FROM dbo.product;
-SELECT * FROM dbo.manufacturer;
-```
-
----
-
-## 🛠️ Troubleshooting
-
-| Issue                            | Solution                                     |
-| -------------------------------- | -------------------------------------------- |
-| **Frontend: No products found**  | Verify `VITE_API_BASE_URL` and CORS          |
-| **Backend: DB connection fails** | Check credentials, firewall settings         |
-| **CI/CD pipeline fails**         | Validate GitHub Secrets, check logs          |
-| **Product Add/Edit issues**      | Confirm correct API URLs & redeploy frontend |
+Once you've set up the database and updated your credentials, start your Spring Boot application. It should connect to the database and be ready to perform CRUD operations on product and manufacturer tables.
 
 ---
 
@@ -112,16 +125,15 @@ SELECT * FROM dbo.manufacturer;
 
 ---
 
-## 📁 Project Structure
+## 📚 Useful Resources
 
-```
-├── src
-│   ├── main
-│   │   ├── java/com/yourapp/...
-│   │   └── resources/
-│   │       └── application.properties
-├── pom.xml
-└── README.md
-```
+* [Azure App Service Docs](https://learn.microsoft.com/en-us/azure/app-service/)
+* [Azure Static Web Apps Docs](https://learn.microsoft.com/en-us/azure/static-web-apps/)
+* [Spring Boot Docs](https://spring.io/projects/spring-boot)
+* [Vite Docs](https://vitejs.dev/)
 
 ---
+
+## 🤝 Contact
+
+For issues or contributions, feel free to open a GitHub issue or pull request.
